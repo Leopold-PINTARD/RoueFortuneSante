@@ -10,11 +10,12 @@
 
     async function loadQuestions() {
         try {
-            if (typeof window.getQuestions === 'function') {
-                loadedQuestions = await window.getQuestions();
-            } else {
-                console.error('getQuestions function not available');
-            }
+            // Using here the function created in the google apps script
+            // to get the questions from the spreadsheet
+            google.script.run.withSuccessHandler((questions) => {
+                loadedQuestions = questions;
+                console.log('Questions loaded:', loadedQuestions);
+            }).getQuestions();
         } catch (error) {
             console.error('Failed to load questions:', error);
         }
