@@ -37,6 +37,10 @@ class Question {
     getExplanation() {
       return this.explaination;
     }
+
+    getPriority() {
+      return this.priority;
+    }
   }
 
 (function() {
@@ -71,7 +75,6 @@ class Question {
                     return q;
                 });
                 console.log('Questions loaded:', loadedQuestions);
-                console.log("Question type is " + typeof loadedQuestions[0]);
             }).getQuestions();
         } catch (error) {
             console.error('Failed to load questions:', error);
