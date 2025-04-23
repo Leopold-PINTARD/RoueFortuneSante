@@ -1,3 +1,44 @@
+class Question {
+    constructor(id, priority, question, category, explanation) {
+      this.id = id;
+      this.priority = priority === "Obligatoire" ? 1 : 0;
+      this.explanation = explanation;
+      this.answer = [];
+      this.correctAnswer = [];
+      this.category = category;
+      this.question = question;
+    }
+
+    addAnswer(answer) {
+      this.answer.push(answer);
+    }
+
+    addCorrectAnswer(correctAnswer) {
+      this.correctAnswer.push(correctAnswer);
+      this.answer.push(correctAnswer);
+    }
+
+    getQuestion() {
+      return this.question;
+    }
+
+    getAnswer() {
+      return this.answer;
+    }
+
+    getCorrectAnswer() {
+      return this.correctAnswer;
+    }
+
+    getCategory() {
+      return this.category;
+    }
+
+    getExplanation() {
+      return this.explaination;
+    }
+  }
+
 (function() {
     const wheel = document.querySelector('.wheel');
     const startButton = document.querySelector('.button');
