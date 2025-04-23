@@ -56,6 +56,7 @@ class Question {
             google.script.run.withSuccessHandler((questions) => {
                 loadedQuestions = questions;
                 console.log('Questions loaded:', loadedQuestions);
+                console.log("Question type is " + typeof loadedQuestions[0]);
             }).getQuestions();
         } catch (error) {
             console.error('Failed to load questions:', error);
