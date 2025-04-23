@@ -54,7 +54,22 @@ class Question {
             // Using here the function created in the google apps script
             // to get the questions from the spreadsheet
             google.script.run.withSuccessHandler((questions) => {
-                loadedQuestions = questions;
+                loadedQuestions = questions.map((question) => {
+                    const q = new Question(
+                        question.id,
+                        question.priority,
+                        question.question,
+                        question.category,
+                        question.explanation
+                    );
+                    for (let i = 0; i < question.answer.length; i++) {
+                        q.addAnswer(question.answer[i]);
+                    }
+                    for (let i = 0; i < question.correctAnswer.length; i++) {
+                        q.addCorrectAnswer(question.correctAnswer[i]);
+                    }
+                    return q;
+                });
                 console.log('Questions loaded:', loadedQuestions);
                 console.log("Question type is " + typeof loadedQuestions[0]);
             }).getQuestions();
