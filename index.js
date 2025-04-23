@@ -15,7 +15,6 @@ class Question {
 
     addCorrectAnswer(correctAnswer) {
       this.correctAnswer.push(correctAnswer);
-      this.answer.push(correctAnswer);
     }
 
     getQuestion() {
