@@ -80,7 +80,7 @@ class Question {
         }
     }
 
-    document.addEventListener('DOMContentLoaded', loadQuestions);
+    loadQuestions()
 
     function getQuestionContainer() {
         if (!questionContainer) {
