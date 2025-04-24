@@ -180,8 +180,6 @@ class Question {
 
     loadQuestions()
 
-    startButton.style.display = 'none';
-
     usernameForm.addEventListener('submit', (event) => {
         event.preventDefault();
         username = sanitizeInput(usernameInput.ariaValueMax.trim());
