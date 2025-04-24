@@ -75,6 +75,8 @@ class Question {
         return div.innerHTML;
     }
 
+    startButton.disabled = true;
+
     async function loadQuestions() {
         try {
             // Using here the function created in the google apps script
@@ -178,8 +180,6 @@ class Question {
 }
 
 // ------------------END OF FUNCTION DEFINITIONS-----------------
-
-    startButton.disabled = true;
 
     loadQuestions()
 
