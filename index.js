@@ -97,6 +97,7 @@ class Question {
                     return q;
                 });
                 console.log('Questions loaded:', loadedQuestions);
+                startButton.disabled = false;
             }).getQuestions();
         } catch (error) {
             console.error('Failed to load questions:', error);
@@ -177,6 +178,8 @@ class Question {
 }
 
 // ------------------END OF FUNCTION DEFINITIONS-----------------
+
+    startButton.disabled = true;
 
     loadQuestions()
 
