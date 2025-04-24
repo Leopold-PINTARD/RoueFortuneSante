@@ -42,6 +42,8 @@ class Question {
     }
   }
 
+// -----------------------END OF CLASS DEFINITION-----------------------
+
 (function() {
     const wheel = document.querySelector('.wheel');
     const startButton = document.querySelector('.button');
@@ -80,8 +82,6 @@ class Question {
         }
     }
 
-    loadQuestions()
-
     function getQuestionContainer() {
         if (!questionContainer) {
             questionContainer = document.createElement('div');
@@ -111,6 +111,11 @@ class Question {
             }
         }
     }
+
+// ------------------END OF FUNCTION DEFINITIONS-----------------
+
+    loadQuestions()
+
 
     startButton.addEventListener('click', () => {
         startButton.style.pointerEvents = 'none';
