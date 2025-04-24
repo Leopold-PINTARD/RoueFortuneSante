@@ -37,7 +37,7 @@ body {
     opacity: 0.8;
 }
 
-.form {
+.form form {
     display: flex;
     align-items: center;
     flex-direction: column;
