@@ -58,35 +58,24 @@ body {
 .question-container {
     width: 500px;
     margin: 20px auto;
-    padding: 20px;
-
-    background-color: #393939;
-
-    border-radius: 10px;
-    border: 1px solid red;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-
-    text-align: left;
     color: white;
-}
-
-.question-container h3 {
-    color: #fff;
-    margin-top: 0;
+    padding: 20px;
+    background-color: #e20714;
+    border-radius: 10px;
+    border: 2px solid #000000;
+    font-family: 'Roboto', sans-serif;
 }
 
 .answer-btn {
-    background-color: #002f43;
-    border: none;
+    background-color: #273781;
     color: white;
-    padding: 10px 20px;
-    text-align: center;
-    text-decoration: none;
+    border: 2px solid #000000;
+    padding: 10px 10px;
     display: inline-block;
     font-size: 16px;
-    margin: 10px 0;
-    cursor: pointer;
-    border-radius: 5px;
+    margin: 10px 10px;
+    border-radius: 10px;
+    font-family: 'Roboto', sans-serif;
 }
 
 .answer-btn:hover {
