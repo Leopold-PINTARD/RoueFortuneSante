@@ -130,19 +130,21 @@ class Question {
     wheel.addEventListener('transitionend', () => {
         startButton.style.pointerEvents = 'auto';
         wheel.style.transition = 'none';
-        const actualDeg = deg % 360;
         wheel.style.transform = `rotate(${actualDeg}deg)`;
-
-        let sectionName = '';
-        if (Math.floor(actualDeg / 45) % 3 === 1) {
-            sectionName = "Questions générales";
-        } else if (Math.floor(actualDeg / 45) % 3 === 2) {
-            sectionName = "Visites médicales";
-        } else {
-            sectionName = "Prévention des risques professionnels";
+        const actualDeg = deg % 360;
+        const division = Math.floor(actualDeg / (360 / 8));
+        const sectionMap = {
+            0: "Questions générales",
+            1: "Prévention des risques professionnels",
+            2: "Autres missions du Pôle Santé",
+            3: "Visites médicales",
+            4: "Questions générales",
+            5: "Prévention des risques professionnels",
+            6: "Autres missions du Pôle Santé",
+            7: "Visites médicales"
         }
 
-        let question = getQuestionForSection(sectionName);
+        let question = getQuestionForSection(sectionMap[division]);
 
         if (!question) {
             alert("Il n'y a plus de questions dans ce thème.");
