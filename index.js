@@ -177,7 +177,7 @@ class Question {
         startButton.style.pointerEvents = 'none';
         startButton.style.display = 'none';
         let rigDeg = rigWheelBySection(loadedQuestions);
-        let deg = Math.floor(Math.random() * 360 + 2880) + (rigDeg * 45);
+        deg = Math.floor(Math.random() * 360 * 10) + (rigDeg * (360 / 8));
         wheel.style.transition = 'all 4s ease-out';
         wheel.style.transform = `rotate(${deg}deg)`;
         getQuestionContainer().style.display = 'none';
@@ -188,7 +188,6 @@ class Question {
         wheel.style.transition = 'none';
         const actualDeg = deg % 360;
         wheel.style.transform = `rotate(${actualDeg}deg)`;
-        deg = actualDeg;
         const division = Math.floor(actualDeg / (360 / 8));
 
         let question = getQuestionForSection(sectionMap[division]);
