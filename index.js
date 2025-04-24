@@ -179,7 +179,7 @@ class Question {
         let rigDeg = rigWheelBySection(loadedQuestions);
         deg = Math.floor((10 * 360) + // fait que la roue fait 10 tours
                         (rigDeg * (360 / 8)) + // choisit la section
-                        ((Math.random() + 1) % (360 / 8)) * (360 / 8)); //fait que ca ne tombe pas directement sur la ligne
+                        (Math.floor(Math.random() * ((360 / 8) + 1)))); //fait que ca ne tombe pas directement sur la ligne
         wheel.style.transition = 'all 4s ease-out';
         wheel.style.transform = `rotate(${deg}deg)`;
         getQuestionContainer().style.display = 'none';
