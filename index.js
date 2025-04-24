@@ -217,6 +217,9 @@ class Question {
                 ${answer.text}
             </button>
             `).join('')}
+                <div class="explanation" style="display: none;">
+                    <p>${question.getExplanation()}</p>
+                </div>
             </div>
         `;
 
