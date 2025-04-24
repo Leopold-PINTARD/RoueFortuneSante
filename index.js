@@ -130,8 +130,8 @@ class Question {
     wheel.addEventListener('transitionend', () => {
         startButton.style.pointerEvents = 'auto';
         wheel.style.transition = 'none';
-        wheel.style.transform = `rotate(${actualDeg}deg)`;
         const actualDeg = deg % 360;
+        wheel.style.transform = `rotate(${actualDeg}deg)`;
         const division = Math.floor(actualDeg / (360 / 8));
         const sectionMap = {
             0: "Questions générales",
