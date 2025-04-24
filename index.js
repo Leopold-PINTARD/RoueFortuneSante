@@ -34,7 +34,7 @@ class Question {
     }
 
     getExplanation() {
-      return this.explaination;
+      return this.explanation;
     }
 
     getPriority() {
@@ -136,7 +136,7 @@ class Question {
             }
             sectionCount[section]++;
             if (priority === 1) {
-                sectionCount[section]++;
+                sectionCount[section] += 4;
             }
         });
 
