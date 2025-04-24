@@ -75,8 +75,6 @@ class Question {
         return div.innerHTML;
     }
 
-    startButton.disabled = true;
-
     async function loadQuestions() {
         try {
             // Using here the function created in the google apps script
@@ -99,7 +97,7 @@ class Question {
                     return q;
                 });
                 console.log('Questions loaded:', loadedQuestions);
-                startButton.disabled = false;
+                startButton.style.display = 'block';
             }).getQuestions();
         } catch (error) {
             console.error('Failed to load questions:', error);
@@ -191,7 +189,6 @@ class Question {
             return;
         }
         usernameForm.style.display = 'none';
-        startButton.style.display = 'block';
         console.log("Username is " + username);
     });
 
