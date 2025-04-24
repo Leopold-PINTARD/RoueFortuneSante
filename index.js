@@ -134,15 +134,15 @@ class Question {
         wheel.style.transform = `rotate(${actualDeg}deg)`;
         const division = Math.floor(actualDeg / (360 / 8));
         const sectionMap = {
-            0: "Questions générales",
-            1: "Prévention des risques professionnels",
-            2: "Autres missions du Pôle Santé",
-            3: "Visites médicales",
-            4: "Questions générales",
-            5: "Prévention des risques professionnels",
-            6: "Autres missions du Pôle Santé",
-            7: "Visites médicales"
-        }
+            0: "Visites médicales",
+            1: "Autres missions du Pôle Santé",
+            2: "Prévention des risques professionnels",
+            3: "Questions générales",
+            4: "Visites médicales",
+            5: "Autres missions du Pôle Santé",
+            6: "Prévention des risques professionnels",
+            7: "Questions générales"
+        };
 
         let question = getQuestionForSection(sectionMap[division]);
 
