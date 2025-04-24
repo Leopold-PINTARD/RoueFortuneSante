@@ -37,6 +37,39 @@ body {
     opacity: 0.8;
 }
 
+.form {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.form label {
+    color: white;
+    font-size: 20px;
+    font-family: 'Roboto', sans-serif;
+    margin: 20px;
+}
+
+.form input {
+    width: 250px;
+    padding: 15px;
+    border-radius: 10px;
+    border: 2px solid #000000;
+}
+
+.form button {
+    width: 285px;
+    background-color: #e20714;
+    color: white;
+    border: 2px solid #000000;
+    padding: 10px 10px;
+    display: inline-block;
+    font-size: 20px;
+    margin: 20px;
+    border-radius: 10px;
+    font-family: 'Roboto', sans-serif;
+}
+
 .blur {
     animation: blur 10s;
 }
