@@ -147,14 +147,26 @@ class Question {
             }
         }
 
-        const randomIndex = Math.floor(Math.random() * weightedSections.length);
-        const selectedSection = sectionMap[weightedSections[randomIndex]];
-        if (randomIndex % 2 === 0) {
-            return selectedSection;
-        } else {
-            return selectedSection + 4;
+    const randomIndex = Math.floor(Math.random() * weightedSections.length);
+    const selectedSection = weightedSections[randomIndex];
+
+    console.log("Selected section is " + selectedSection);
+
+    let sectionId = -1;
+    for (const [id, name] of Object.entries(sectionMap)) {
+        if (name === selectedSection) {
+            sectionId = parseInt(id);
+            break;
         }
     }
+
+
+    if (Math.random() < 0.5) {
+        return sectionId % 4;
+    } else {
+        return (sectionId % 4) + 4;
+    }
+}
 
 // ------------------END OF FUNCTION DEFINITIONS-----------------
 
