@@ -55,7 +55,7 @@ class Question {
     let loadedQuestions = [];
     let score = 0;
     let questionsAnswered = 0;
-    let username = "Unconnu";
+    let username = "Inconnu";
     let idPlayer = -1;
 
     const sectionMap = {
