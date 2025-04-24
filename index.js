@@ -182,7 +182,7 @@ class Question {
 
     usernameForm.addEventListener('submit', (event) => {
         event.preventDefault();
-        username = sanitizeInput(usernameInput.ariaValueMax.trim());
+        username = sanitizeInput(usernameInput.value.trim());
         if (username === "") {
             alert("Veuillez entrer un nom d'utilisateur valide.");
             return;
