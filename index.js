@@ -75,20 +75,6 @@ class Question {
         return div.innerHTML;
     }
 
-    usernameForm.addEventListener('submit', (event) => {
-        event.preventDefault();
-        username = sanitizeInput(usernameInput.ariaValueMax.trim());
-        if (username === "") {
-            alert("Veuillez entrer un nom d'utilisateur valide.");
-            return;
-        }
-        usernameForm.style.display = 'none';
-        startButton.style.display = 'block';
-        console.log("Username is " + username);
-    });
-
-    startButton.style.display = 'none';
-
     async function loadQuestions() {
         try {
             // Using here the function created in the google apps script
@@ -194,6 +180,19 @@ class Question {
 
     loadQuestions()
 
+    startButton.style.display = 'none';
+
+    usernameForm.addEventListener('submit', (event) => {
+        event.preventDefault();
+        username = sanitizeInput(usernameInput.ariaValueMax.trim());
+        if (username === "") {
+            alert("Veuillez entrer un nom d'utilisateur valide.");
+            return;
+        }
+        usernameForm.style.display = 'none';
+        startButton.style.display = 'block';
+        console.log("Username is " + username);
+    });
 
     startButton.addEventListener('click', () => {
         startButton.style.pointerEvents = 'none';
