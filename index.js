@@ -94,6 +94,7 @@ class Question {
 
     function getQuestionForSection(section) {
         console.log("Score is " + score);
+        console.log("Section is " + section);
         choosenQuestion = null;
 
         for (element of loadedQuestions) {
