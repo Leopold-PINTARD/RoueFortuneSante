@@ -70,6 +70,10 @@ body {
     font-family: 'Roboto', sans-serif;
 }
 
+.form button:hover {
+    background-color: #ff4c4c;
+}
+
 .blur {
     animation: blur 10s;
 }
