@@ -53,6 +53,8 @@ class Question {
     let loadedQuestions = [];
     let score = 0;
     let questionsAnswered = 0;
+    let username = "Unknown";
+    let idPlayer = -1;
 
     async function loadQuestions() {
         try {
@@ -194,6 +196,12 @@ class Question {
                         btn.disabled = true;
                     });
                 }
+                (async () => {
+                    idPlayer = await new Promise((resolve) => {
+                        google.script.run.withSuccessHandler(resolve)
+                            .updateScore(username, idPlayer, score, questionsAnswered);
+                    });
+                })();
                 setTimeout(() => {
                     startButton.style.display = 'block';
                 }, 3500);
