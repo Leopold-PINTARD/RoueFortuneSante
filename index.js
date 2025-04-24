@@ -177,7 +177,7 @@ class Question {
         startButton.style.pointerEvents = 'none';
         startButton.style.display = 'none';
         let rigDeg = rigWheelBySection(loadedQuestions);
-        deg = Math.floor(2 * 360) + rigDeg * (360 / 8);
+        deg = Math.floor(((Math.random() + 1) * 10) * 360) + rigDeg * (360 / 8) + ((Math.random() + 1) % (360 / 8)) * (360 / 8);
         wheel.style.transition = 'all 4s ease-out';
         wheel.style.transform = `rotate(${deg}deg)`;
         getQuestionContainer().style.display = 'none';
