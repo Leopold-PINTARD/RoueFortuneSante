@@ -48,6 +48,8 @@ class Question {
     const wheel = document.querySelector('.wheel');
     const startButton = document.querySelector('.button');
     const app = document.querySelector('.app');
+    const usernameForm = document.getElementById('usernameForm');
+    const usernameInput = document.getElementById('usernameInput');
     let deg = 0;
     let questionContainer = null;
     let loadedQuestions = [];
@@ -66,6 +68,26 @@ class Question {
         6: "Prévention des risques professionnels",
         7: "Questions générales"
     };
+
+    function sanitizeInput(input) {
+        const div = document.createElement('div');
+        div.textContent = input;
+        return div.innerHTML;
+    }
+
+    usernameForm.addEventListener('submit', (event) => {
+        event.preventDefault();
+        username = sanitizeInput(usernameInput.ariaValueMax.trim());
+        if (username === "") {
+            alert("Veuillez entrer un nom d'utilisateur valide.");
+            return;
+        }
+        usernameForm.style.display = 'none';
+        startButton.style.display = 'block';
+        console.log("Username is " + username);
+    });
+
+    startButton.style.display = 'none';
 
     async function loadQuestions() {
         try {
