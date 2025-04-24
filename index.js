@@ -53,8 +53,19 @@ class Question {
     let loadedQuestions = [];
     let score = 0;
     let questionsAnswered = 0;
-    let username = "Unknown";
+    let username = "Unconnu";
     let idPlayer = -1;
+
+    const sectionMap = {
+        0: "Visites médicales",
+        1: "Autres missions du Pôle Santé",
+        2: "Prévention des risques professionnels",
+        3: "Questions générales",
+        4: "Visites médicales",
+        5: "Autres missions du Pôle Santé",
+        6: "Prévention des risques professionnels",
+        7: "Questions générales"
+    };
 
     async function loadQuestions() {
         try {
@@ -115,6 +126,36 @@ class Question {
         }
     }
 
+    function rigWheelBySection(questions) {
+        const sectionCount = {};
+        questions.forEach((question) => {
+            const section = question.getCategory();
+            const priority = question.getPriority();
+            if (!sectionCount[section]) {
+                sectionCount[section] = 0;
+            }
+            sectionCount[section]++;
+            if (priority === 1) {
+                sectionCount[section]++;
+            }
+        });
+
+        const weightedSections = [];
+        for (const section in sectionCount) {
+            for (let i = 0; i < sectionCount[section]; i++) {
+            weightedSections.push(section);
+            }
+        }
+
+        const randomIndex = Math.floor(Math.random() * weightedSections.length);
+        const selectedSection = sectionMap[weightedSections[randomIndex]];
+        if (randomIndex % 2 === 0) {
+            return selectedSection;
+        } else {
+            return selectedSection + 4;
+        }
+    }
+
 // ------------------END OF FUNCTION DEFINITIONS-----------------
 
     loadQuestions()
@@ -123,7 +164,8 @@ class Question {
     startButton.addEventListener('click', () => {
         startButton.style.pointerEvents = 'none';
         startButton.style.display = 'none';
-        deg = Math.floor(3000 + Math.random() * 3000);
+        let rigDeg = rigWheelBySection(loadedQuestions);
+        let deg = Math.floor(Math.random() * 360 + 720) + (rigDeg * 45);
         wheel.style.transition = 'all 4s ease-out';
         wheel.style.transform = `rotate(${deg}deg)`;
         getQuestionContainer().style.display = 'none';
@@ -135,16 +177,6 @@ class Question {
         const actualDeg = deg % 360;
         wheel.style.transform = `rotate(${actualDeg}deg)`;
         const division = Math.floor(actualDeg / (360 / 8));
-        const sectionMap = {
-            0: "Visites médicales",
-            1: "Autres missions du Pôle Santé",
-            2: "Prévention des risques professionnels",
-            3: "Questions générales",
-            4: "Visites médicales",
-            5: "Autres missions du Pôle Santé",
-            6: "Prévention des risques professionnels",
-            7: "Questions générales"
-        };
 
         let question = getQuestionForSection(sectionMap[division]);
 
