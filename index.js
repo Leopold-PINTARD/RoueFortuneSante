@@ -265,9 +265,11 @@ class Question {
                 }
                 if (answer.correct) {
                     label.style.backgroundColor = 'green';
+                    label.style.color = 'green';
                     label.style.borderColor = '#4CAF50';
                 } else if (isSelected) {
                     label.style.backgroundColor = 'red';
+                    label.style.color = 'red';
                     label.style.borderColor = '#f44336';
                 }
             });

@@ -116,10 +116,6 @@ body {
     font-family: 'Roboto', sans-serif;
 }
 
-.answer-btn:hover {
-    background-color: #005f7f;
-}
-
 .answers-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
