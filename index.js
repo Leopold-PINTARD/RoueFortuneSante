@@ -230,50 +230,73 @@ class Question {
         const container = getQuestionContainer();
         container.innerHTML = `
             <h2>${question.getQuestion()}</h2>
-            <div class="answers-grid" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px;">
+            <div class="answers-grid">
             ${answersButtons.map((answer, index) => `
-            <button class="answer-btn" data-index="${index}">
-                ${answer.text}
-            </button>
-            `).join('')}
-                <div class="explanation" style="display: none;">
-                    <p>${question.getExplanation()}</p>
+                <div class="answer-option">
+                    <input type="checkbox" id="answer-${index}" class="answer-checkbox" data-index="${index}">
+                    <label for="answer-${index}">${answer.text}</label>
                 </div>
+            `).join('')}
+            </div>
+            <button id="validate-btn" class="validate-btn">Valider</button>
+            <div class="explanation">
+                <p>${question.getExplanation()}</p>
             </div>
         `;
 
-        const answerButtons = container.querySelectorAll('.answer-btn');
-        answerButtons.forEach((button, index) => {
-            button.addEventListener('click', () => {
-                const isCorrect = answersButtons[index].correct;
-                questionsAnswered++;
-                if (isCorrect) {
-                    score++;
-                    answerButtons.forEach((btn, idx) => {
-                        if (answersButtons[idx].correct) {
-                            btn.style.backgroundColor = 'green';
-                        }
-                        btn.disabled = true;
-                    });
-                } else {
-                    button.style.backgroundColor = 'red';
-                    answerButtons.forEach((btn, idx) => {
-                        if (answersButtons[idx].correct) {
-                            btn.style.backgroundColor = 'green';
-                        }
-                        btn.disabled = true;
-                    });
+        const checkboxes = container.querySelectorAll('.answer-checkbox');
+        const validateButton = container.getElementById('validate-btn');
+        const explanationDiv = container.querySelector('.explanation');
+        validateButton.addEventListener('click', () => {
+            const selectedAnswers = Array.from(checkboxes)
+                .filter(checkbox => checkbox.checked)
+                .map(checkbox => parseInt(checkbox.dataset.index));
+            if (selectedAnswers.length === 0) {
+                alert("Veuillez sélectionner au moins une réponse.");
+                return;
+            }
+            questionsAnswered++;
+            let isCorrect = true;
+            answersButtons.forEach((answer, index) => {
+                const isSelected = selectedAnswers.includes(index);
+                const label = container.querySelector(`label[for="answer-${index}"]`);
+                if ((answer.correct && !isSelected) || (!answer.correct && isSelected)) {
+                    isCorrect = false;
                 }
-                (async () => {
-                    idPlayer = await new Promise((resolve) => {
-                        google.script.run.withSuccessHandler(resolve)
+                if (answer.correct) {
+                    label.style.backgroundColor = '#a3e4a3';
+                    label.style.borderColor = '#4CAF50';
+                } else if (isSelected) {
+                    label.style.backgroundColor = '#f8a5a5';
+                    label.style.borderColor = '#f44336';
+                }
+            });
+            if (isCorrect) {
+                score++;
+                validateButton.innerHTML = '✓ Correct!';
+                validateButton.style.backgroundColor = '#4CAF50';
+            } else {
+                validateButton.innerHTML = '✗ Incorrect';
+                validateButton.style.backgroundColor = '#f44336';
+            }
+            checkboxes.forEach(checkbox => checkbox.disabled = true);
+            validateButton.disabled = true;
+            explanationDiv.style.display = 'block';
+            (async () => {
+                try {
+                    idPlayer = await new Promise((resolve, reject) => {
+                        google.script.run
+                            .withSuccessHandler(resolve)
+                            .withFailureHandler(reject)
                             .updateScore(username, idPlayer, score, questionsAnswered);
                     });
-                })();
-                setTimeout(() => {
-                    startButton.style.display = 'block';
-                }, 3500);
-            });
+                } catch (error) {
+                    console.error('Failed to update score:', error);
+                }
+            })();
+            setTimeout(() => {
+                startButton.style.display = 'block';
+            }, 3500);
         });
         container.style.display = 'block';
     });

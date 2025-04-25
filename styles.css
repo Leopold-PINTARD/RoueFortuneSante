@@ -119,3 +119,41 @@ body {
 .answer-btn:hover {
     background-color: #005f7f;
 }
+
+.answers-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+}
+
+.answer-option {
+    margin-bottom: 10px;
+}
+
+.answer-option label {
+    padding: 8px;
+    display: inline-block;
+    width: 90%;
+    cursor: pointer;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.validate-btn {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+}
+
+.explanation {
+    display: none;
+    margin-top: 15px;
+    padding: 10px;
+    background-color: #f8f9fa;
+    border-radius: 4px;
+}
