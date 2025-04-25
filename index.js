@@ -245,7 +245,7 @@ class Question {
         `;
 
         const checkboxes = container.querySelectorAll('.answer-checkbox');
-        const validateButton = container.getElementById('validate-btn');
+        const validateButton = container.querySelector('#validate-btn');
         const explanationDiv = container.querySelector('.explanation');
         validateButton.addEventListener('click', () => {
             const selectedAnswers = Array.from(checkboxes)
