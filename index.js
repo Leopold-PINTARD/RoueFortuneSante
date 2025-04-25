@@ -97,8 +97,10 @@ class Question {
                     }
                     return q;
                 });
+                startButton.style.pointerEvents = 'auto';
+                startButton.style.opacity = '1';
+                startButton.style.cursor = 'pointer';
                 console.log('Questions loaded:', loadedQuestions);
-                startButton.style.display = 'block';
             }).getQuestions();
         } catch (error) {
             console.error('Failed to load questions:', error);
@@ -162,6 +164,7 @@ class Question {
             return;
         }
         usernameForm.style.display = 'none';
+        startButton.style.display = 'block';
         console.log("Username is " + username);
     });
 
