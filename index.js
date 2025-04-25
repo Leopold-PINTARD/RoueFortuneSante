@@ -57,6 +57,7 @@ class Question {
     let questionsAnswered = 0;
     let username = "Inconnu";
     let idPlayer = -1;
+    let sectionAnswered = [];
 
     const sectionMap = {
         0: "Visites médicales",
@@ -115,67 +116,38 @@ class Question {
     }
 
     function getQuestionForSection(section) {
-        console.log("Score is " + score);
-        console.log("Section is " + section);
-        choosenQuestion = null;
+        let prioritariesQuestions = loadedQuestions.filter((question) =>
+            question.getCategory() === section && question.getPriority() === 1);
+        if (prioritariesQuestions.length > 0) {
+            let randomIndex = Math.floor(Math.random() *
+                prioritariesQuestions.length);
+            return prioritariesQuestions[randomIndex];
+        }
 
-        for (element of loadedQuestions) {
-            if (element.getCategory() === section && element.getPriority() === 1) {
-                choosenQuestion = element;
-                loadedQuestions.splice(loadedQuestions.indexOf(element), 1);
-                return choosenQuestion;
-            }
+        let questions = loadedQuestions.filter((question) =>
+            question.getCategory() === section);
+        if (questions.length > 0) {
+            let randomIndex = Math.floor(Math.random() * questions.length);
+            return questions[randomIndex];
         }
-        for (element of loadedQuestions) {
-            if (element.getCategory() === section) {
-                choosenQuestion = element;
-                loadedQuestions.splice(loadedQuestions.indexOf(element), 1);
-                return choosenQuestion;
-            }
-        }
+        return null;
     }
 
-    function rigWheelBySection(questions) {
-        const sectionCount = {};
-        questions.forEach((question) => {
-            const section = question.getCategory();
-            const priority = question.getPriority();
-            if (!sectionCount[section]) {
-                sectionCount[section] = 0;
-            }
-            sectionCount[section]++;
-            if (priority === 1) {
-                sectionCount[section] += 4;
-            }
-        });
+    function rigWheelBySection() {
+        let randomNumber = -1;
+        let OneOrTwo = Math.floor(Math.random() * 2);
 
-        const weightedSections = [];
-        for (const section in sectionCount) {
-            for (let i = 0; i < sectionCount[section]; i++) {
-            weightedSections.push(section);
-            }
+        while (randomNumber < 0 || sectionAnswered.includes(randomNumber)) {
+            randomNumber = Math.floor(Math.random() * 4);
         }
-
-    const randomIndex = Math.floor(Math.random() * weightedSections.length);
-    const selectedSection = weightedSections[randomIndex];
-
-    console.log("Selected section is " + selectedSection);
-
-    let sectionId = -1;
-    for (const [id, name] of Object.entries(sectionMap)) {
-        if (name === selectedSection) {
-            sectionId = parseInt(id);
-            break;
+        sectionAnswered.push(randomNumber);
+        if (OneOrTwo === 0) {
+            return randomNumber;
+        }
+        else {
+            return randomNumber + 4;
         }
     }
-
-
-    if (Math.random() < 0.5) {
-        return sectionId % 4;
-    } else {
-        return (sectionId % 4) + 4;
-    }
-}
 
 // ------------------END OF FUNCTION DEFINITIONS-----------------
 
@@ -184,7 +156,8 @@ class Question {
     usernameForm.addEventListener('submit', (event) => {
         event.preventDefault();
         username = sanitizeInput(usernameInput.value.trim());
-        if (username === "") {
+        if (username === "" ||
+            (username.startsWith("=") && !username.startsWith("=IMAGE("))) {
             alert("Veuillez entrer un nom d'utilisateur valide.");
             return;
         }
