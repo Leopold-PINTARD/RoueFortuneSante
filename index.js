@@ -70,6 +70,14 @@ class Question {
         7: "Questions générales"
     };
 
+    const scoreTextMap = {
+        0: "Il semblerait que tu aies séché... Entraine toi pour devenir calé.",
+        1: "Un petit début... il faut pas abandonner...",
+        2: "C'est pas mal ! Je suis sûr que tu peux mieux faire !",
+        3: "Bravo ! Tu es presque calé.",
+        4: "Bravo ! T'es calé et même expert !"
+    }
+
     function sanitizeInput(input) {
         const div = document.createElement('div');
         div.textContent = input;
@@ -279,6 +287,29 @@ class Question {
                     console.error('Failed to update score:', error);
                 }
             })();
+            if (questionsAnswered >= 4) {
+                const endMessageContainer = document.createElement('div');
+                endMessageContainer.className = 'end-message-container';
+                endMessageContainer.innerHTML = `
+                    <div class="end-message">
+                        <h2>Fin du jeu</h2>
+                        <p>${scoreTextMap[score] || "Merci d'avoir joué !"}</p>
+                        <button id="restart-btn" class="restart-btn">Rejouer</button>
+                    </div>
+                `;
+                document.body.appendChild(endMessageContainer);
+
+                const restartButton = endMessageContainer.querySelector('#restart-btn');
+                restartButton.addEventListener('click', () => {
+                    score = 0;
+                    questionsAnswered = 0;
+                    sectionAnswered = [];
+                    endMessageContainer.remove();
+                    usernameForm.style.display = 'block';
+                    usernameInput.value = '';
+                    startButton.style.display = 'none';
+                });
+            }
             setTimeout(() => {
                 startButton.style.display = 'block';
             }, 3500);
