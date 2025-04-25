@@ -220,6 +220,16 @@ class Question {
             </div>
         `;
 
+        answersButtons.forEach((answer, index) => {
+            const answerBox = container.querySelector(`#answer-box-${index}`);
+            const checkbox = container.querySelector(`#answer-${index}`);
+            answerBox.addEventListener('click', (event) => {
+                if (event.target.tagName !== 'INPUT' && event.target.tagName !== 'LABEL') {
+                    checkbox.checked = !checkbox.checked;
+                }
+            });
+        });
+
         const checkboxes = container.querySelectorAll('.answer-checkbox');
         const validateButton = container.querySelector('#validate-btn');
         const explanationDiv = container.querySelector('.explanation');
