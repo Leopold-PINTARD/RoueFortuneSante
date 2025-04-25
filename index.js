@@ -232,7 +232,7 @@ class Question {
             <h2>${question.getQuestion()}</h2>
             <div class="answers-grid">
             ${answersButtons.map((answer, index) => `
-                <div class="answer-option">
+                <div class="answer-btn">
                     <input type="checkbox" id="answer-${index}" class="answer-checkbox" data-index="${index}">
                     <label for="answer-${index}">${answer.text}</label>
                 </div>
@@ -264,20 +264,20 @@ class Question {
                     isCorrect = false;
                 }
                 if (answer.correct) {
-                    label.style.backgroundColor = '#a3e4a3';
+                    label.style.backgroundColor = 'green';
                     label.style.borderColor = '#4CAF50';
                 } else if (isSelected) {
-                    label.style.backgroundColor = '#f8a5a5';
+                    label.style.backgroundColor = 'red';
                     label.style.borderColor = '#f44336';
                 }
             });
             if (isCorrect) {
                 score++;
                 validateButton.innerHTML = '✓ Correct!';
-                validateButton.style.backgroundColor = '#4CAF50';
+                validateButton.style.backgroundColor = 'green';
             } else {
                 validateButton.innerHTML = '✗ Incorrect';
-                validateButton.style.backgroundColor = '#f44336';
+                validateButton.style.backgroundColor = 'red';
             }
             checkboxes.forEach(checkbox => checkbox.disabled = true);
             validateButton.disabled = true;
