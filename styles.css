@@ -63,7 +63,7 @@ body {
     background-color: #e20714;
     color: white;
     border: 2px solid #000000;
-    padding: 10px 10px;
+    padding: 10px;
     display: inline-block;
     font-size: 20px;
     margin: 20px;
@@ -104,22 +104,21 @@ body {
     font-family: 'Roboto', sans-serif;
 }
 
+.answers-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+
 .answer-btn {
     background-color: #273781;
     color: white;
     border: 2px solid #000000;
-    padding: 10px 10px;
+    padding: 10px;
     display: inline-block;
     font-size: 16px;
-    margin: 10px 10px;
+    margin: 10px;
     border-radius: 10px;
     font-family: 'Roboto', sans-serif;
-}
-
-.answers-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
 }
 
 .answer-checkbox {
@@ -129,36 +128,26 @@ body {
     cursor: pointer;
 }
 
-.answer-option {
-    margin-bottom: 10px;
-}
-
-.answer-option label {
-    padding: 8px;
-    display: inline-block;
-    width: 90%;
-    cursor: pointer;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
-
 .validate-btn {
     margin-top: 20px;
-    padding: 10px 20px;
-    background-color: #4CAF50;
+    padding: 10px;
+    background-color: #4caf50;
     color: white;
-    border: none;
-    border-radius: 4px;
+    border: 2px solid #000000;
+    border-radius: 10px;
     cursor: pointer;
     width: 100%;
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
 }
 
 .explanation {
     display: none;
-    margin-top: 15px;
+    margin-top: 20px;
     padding: 10px;
     background-color: #f8f9fa;
-    border-radius: 4px;
+    border-radius: 10px;
+    border: 2px solid #000000;
 }
 
 .correct-answer {
