@@ -232,7 +232,7 @@ class Question {
             <h2>${question.getQuestion()}</h2>
             <div class="answers-grid">
             ${answersButtons.map((answer, index) => `
-                <div class="answer-btn">
+                <div class="answer-box">
                     <input type="checkbox" id="answer-${index}" class="answer-checkbox" data-index="${index}">
                     <label for="answer-${index}">${answer.text}</label>
                 </div>
@@ -259,15 +259,15 @@ class Question {
             let isCorrect = true;
             answersButtons.forEach((answer, index) => {
                 const isSelected = selectedAnswers.includes(index);
-                const label = container.querySelector(`label[for="answer-${index}"]`);
+                const answerBox = container.querySelector(`#answer-${index}`).parentElement;
+                
                 if ((answer.correct && !isSelected) || (!answer.correct && isSelected)) {
                     isCorrect = false;
                 }
                 if (answer.correct) {
-                    label.classList.add('correct-answer');
+                    answerBox.classList.add('correct-answer');
                 } else if (isSelected) {
-                    label.classList.add('incorrect-answer');
-                    label.style.borderColor = '#f44336';
+                    answerBox.classList.add('incorrect-answer');
                 }
             });
             if (isCorrect) {
