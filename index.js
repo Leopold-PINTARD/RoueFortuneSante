@@ -72,7 +72,7 @@ class Question {
 
     const scoreTextMap = {
         0: "Il semblerait que tu aies séché... Entraine toi pour devenir calé.",
-        1: "Un petit début... il faut pas abandonner...",
+        1: "Un petit début... Il ne faut pas abandonner...",
         2: "C'est pas mal ! Je suis sûr que tu peux mieux faire !",
         3: "Bravo ! Tu es presque calé.",
         4: "Bravo ! T'es calé et même expert !"
@@ -292,8 +292,8 @@ class Question {
                     const scoreMessage = scoreTextMap[score] || "Score final";
                     container.innerHTML = `
                         <div class="score-box">
-                            <h2>Fin du Quiz!</h2>
-                            <h3>Score final: ${score}/4</h3>
+                            <h2>Fin du Quiz !</h2>
+                            <h3>Score final : ${score}/4</h3>
                             <p>${scoreMessage}</p>
                             <button id="replay-btn" class="replay-btn">Rejouer</button>
                         </div>
