@@ -221,8 +221,8 @@ body {
     }
 
     .marker {
-        position: fixed;
-        top: 25px;
+        position: absolute;
+        top: 0px;
         width: 30px;
         left: 50%;
         transform: translateX(-50%);
