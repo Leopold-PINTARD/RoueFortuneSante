@@ -287,19 +287,30 @@ class Question {
                     console.error('Failed to update score:', error);
                 }
             })();
-            if (questionsAnswered >= 4) {
-                const scoreMessage = scoreTextMap[score] || "Score final";
-                container.innerHTML = `
-                    <div class="score-box">
-                        <h2>Fin du Quiz!</h2>
-                        <h3>Score final: ${score}/4</h3>
-                        <p>${scoreMessage}</p>
-                    </div>
-                `;
-                startButton.style.display = 'none';
-            }
             setTimeout(() => {
-                startButton.style.display = 'block';
+                if (questionsAnswered >= 4) {
+                    const scoreMessage = scoreTextMap[score] || "Score final";
+                    container.innerHTML = `
+                        <div class="score-box">
+                            <h2>Fin du Quiz!</h2>
+                            <h3>Score final: ${score}/4</h3>
+                            <p>${scoreMessage}</p>
+                            <button id="replay-btn" class="replay-btn">Rejouer</button>
+                        </div>
+                    `;
+                    const replayBtn = container.querySelector('#replay-btn');
+                    if (replayBtn) {
+                        replayBtn.addEventListener('click', () => {
+                            score = 0;
+                            questionsAnswered = 0;
+                            sectionAnswered = [];
+                            container.style.display = 'none';
+                            startButton.style.display = 'block';
+                        });
+                        }
+                } else {
+                    startButton.style.display = 'block';
+                }
             }, 3500);
         });
         container.style.display = 'block';
