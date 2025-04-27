@@ -162,3 +162,22 @@ body {
     background-color: red;
     border-color: #f44336;
 }
+
+.score-box {
+    background-color: #273781;
+    border: 2px solid #000000;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    color: white;
+    margin: 20px auto;
+}
+
+.score-box h2, .score-box h3 {
+    margin: 10px 0;
+}
+
+.score-box p {
+    font-size: 18px;
+    margin: 15px 0;
+}

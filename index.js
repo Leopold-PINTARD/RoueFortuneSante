@@ -288,7 +288,15 @@ class Question {
                 }
             })();
             if (questionsAnswered >= 4) {
-                alert("Fin du quiz ! Score final : " + score + "/4");
+                const scoreMessage = scoreTextMap[score] || "Score final";
+                container.innerHTML = `
+                    <div class="score-box">
+                        <h2>Fin du Quiz!</h2>
+                        <h3>Score final: ${score}/4</h3>
+                        <p>${scoreMessage}</p>
+                    </div>
+                `;
+                startButton.style.display = 'none';
             }
             setTimeout(() => {
                 startButton.style.display = 'block';
