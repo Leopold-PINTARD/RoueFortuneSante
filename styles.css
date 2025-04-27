@@ -24,6 +24,16 @@ body {
     z-index: 2;
 }
 
+footer {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.logo {
+    width: 250px;
+    height: auto;
+}
+
 .button {
     margin-top: 20px;
     width: 250px;
