@@ -221,7 +221,9 @@ footer {
     }
 
     .marker {
-        position: absolute;
+        position: fixed;
+        top: 25px;
+        width: 30px;
         left: 50%;
         transform: translateX(-50%);
         z-index: 2;
@@ -230,5 +232,20 @@ footer {
     .button {
         width: 60%;
         margin: 20px auto;
+    }
+
+    .question-container {
+        width: 80%;
+        margin: 20px auto;
+        color: white;
+        padding: 20px;
+        background-color: #e20714;
+        border-radius: 10px;
+        border: 2px solid #000000;
+        font-family: 'Roboto', sans-serif;
+    }
+
+    .answer-btn {
+        width: calc(50% - 20px);
     }
 }
