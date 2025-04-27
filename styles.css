@@ -244,8 +244,4 @@ footer {
         border: 2px solid #000000;
         font-family: 'Roboto', sans-serif;
     }
-
-    .answer-btn {
-        width: calc(50% - 20px);
-    }
 }
