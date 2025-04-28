@@ -304,6 +304,7 @@ class Question {
                             score = 0;
                             questionsAnswered = 0;
                             sectionAnswered = [];
+                            idPlayer = -1;
                             container.style.display = 'none';
                             startButton.style.display = 'block';
                         });
